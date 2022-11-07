@@ -6,7 +6,7 @@ function find() {
         .join('projects as p', 'p.project_id', 't.project_id')
 }
 
-function addTask(task) {
+function create(task) {
     return db('tasks')
         .insert(task)
         .then(([task_id]) => {
@@ -14,4 +14,4 @@ function addTask(task) {
         })
 }
 
-module.exports = { find, addTask }
+module.exports = { find, create }

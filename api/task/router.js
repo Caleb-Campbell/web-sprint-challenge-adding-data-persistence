@@ -4,14 +4,14 @@ const Tasks = require('./model')
 router.get('/', (req, res, next) => {
     Tasks.find()
         .then(tasks => {
-            res.json(trueOrFalse(tasks))
+            res.json(isTrue(tasks))
         })
 })
 
 router.post('/', (req, res, next) => {
-    Tasks.addTask(req.body)
+    Tasks.create(req.body)
         .then(task => {
-            res.json(trueOrFalse(task)[0])
+            res.json(isTrue(task)[0])
         })
         .catch(next)
 })
@@ -27,11 +27,21 @@ router.use((err, req, res, next) => {
     })
 })
 
-const trueOrFalse = (tasks) => {
+const isTrue = (tasks) => {
+    
+    //PSEUDO
+    //1.go through each item
+    //2.look at project completed
+    //2. if project completed true - set to false else leave at false
+
+
+
+
 	return tasks.map((proj) => ({
 		...proj,
 		task_completed: proj.task_completed ? true : false,
 	}));
 };
+
 
 module.exports = router
